@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'fonte1';
+  src: url("../fonts/letters_for_learners/Letters\ for\ Learners.ttf");
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
