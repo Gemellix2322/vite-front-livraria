@@ -4,7 +4,7 @@ import Menu from "./pages/Menu/Menu.jsx";
 import Cadastro from "./pages/Menu/Cadastro.jsx";
 import Profile from "./pages/Menu/Profile.jsx";
 import React, {useEffect, useState} from 'react';
-import api from "./components/Api.jsx";
+import apicsharp from "./components/Api.jsx";
 import { ToastContainer } from "react-toastify";
 import LivroDetails from "./pages/Livro/LivroDetails.jsx";
 import notify from "./components/NewAlert.js";
@@ -23,25 +23,28 @@ function App() {
     if(authenticated){
       setAutheticated(true);
     }
-    api.get('/get-users')
+    try{
+      apicsharp.get('/api/Usuario')
       .then(response => {
         setUsers(response.data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error('Erro ao buscar usuários:', error);
-        setLoading(false);
-      });
-    api.get('/books')
-      .then(response => {
-        setLivros(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        notify('Erro ao buscar livros:', 'error');
-        setError(error);
-        setLoading(false);
-      });
+    } catch (error)
+    {
+      console.error('Erro completo:', error);
+    }
+
+    //apicsharp.get('/books')
+    // .then(response => {
+    //    setLivros(response.data);
+    //    setLoading(false);
+    //  })
+    //  .catch(error => {
+    //    notify('Erro ao buscar livros:', 'error');
+    //    setError(error);
+    //    setLoading(false);
+    //  });
+    
   }, []);
 
   if (loading) {

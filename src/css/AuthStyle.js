@@ -27,7 +27,6 @@ export const AuthContainer = styled(Box)({
 
 export const GhostColumn = styled(Box)({
   flex: 1, 
-
 });
 
 
@@ -36,6 +35,9 @@ export const FormColumn = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  padding: '40px',
+  width: '450px',
+  height: '100%',
 });
 
 export const StyledTextField = styled(TextField)({
@@ -43,7 +45,7 @@ export const StyledTextField = styled(TextField)({
   '& .MuiInputBase-root': {
     backgroundColor: '#484848',
     boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.5)',
-    color: 'white',
+    color: 'black',
     '&:hover': {
       backgroundColor: '#c5c5c5',
       '& input': {
@@ -52,9 +54,9 @@ export const StyledTextField = styled(TextField)({
     }
   },
   '& .MuiInputLabel-root': {
-    color: 'white',
+    color: 'black',
     '&.Mui-focused': {
-      color: 'white'
+      color: 'black'
     }
   },
   '& .MuiOutlinedInput-notchedOutline': {

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { 
+import {
+    AuthContainer,
     FormColumn, 
     StyledTextField, 
     StyledButton, 
-    StyledLink 
+    StyledLink, 
+    GhostColumn
   } from '../../css/AuthStyle';
 import "../../css/App.css";
 import Logo from "../../img/Login-Logo.png"
@@ -41,55 +43,30 @@ const Cadastro = ({ users }) => {
     };
   
     return (
-      <PageContainer>
-        <ImageColumn>
-          <Box
-            component="img"
-            src={Logo}
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 250,
-              height: 'auto'
-            }}
-            alt="Logo"
-          />
-          <Typography
-            variant="h4"
-            sx={{
-              color: 'white',
-              fontSize: '45px',
-              position: 'absolute',
-              top: '60%',
-              left: '34%'
-            }}
-          >
-            Gemelli Cafés Especiais
-          </Typography>
-        </ImageColumn>
-  
+      <AuthContainer>
+        <GhostColumn/>
         <FormColumn>
-          <Container maxWidth="sm">
-            <Typography variant="h2" color="white" mb={12}>
+          <Box sx={{ 
+            width: '100%', 
+            maxWidth: '400px', 
+            padding: '20px',
+            display: 'flex',
+            flexDirection: 'column' }}>
+            <Typography variant="h3" color="white" sx={{ mb: 8, fontWeight: 'bold' }}>
               Livros de Prateleira
             </Typography>
-            
             <Box component="form" onSubmit={handleSubmit}>
-              <Typography variant="h4" color="white" mb={2}>
+              <Typography variant="h4" color="white" sx={{ mb: 3 }}>
                 Cadastro
               </Typography>
-              
               <StyledTextField
                 fullWidth
                 label="Usuário"
                 autoFocus
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUser(e.target.value)}
                 required
               />
-              
               <StyledTextField
                 fullWidth
                 label="Senha"
@@ -98,18 +75,16 @@ const Cadastro = ({ users }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              
-              <StyledButton type="submit" fullWidth variant="contained">
+              <StyledButton fullWidth type="submit" variant="contained">
                 Cadastrar
               </StyledButton>
-              
-              <StyledLink to="/">
-                Já tenho Login
-              </StyledLink>
+              <Box sx={{ textAlign: 'center', mt: 2 }}>
+                <StyledLink to="/">Já tenho Login</StyledLink>
+              </Box>
             </Box>
-          </Container>
+          </Box>
         </FormColumn>
-      </PageContainer>
+      </AuthContainer>
     );
   };
 

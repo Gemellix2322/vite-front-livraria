@@ -45,7 +45,7 @@ const Login = ({ users, setAuthenticated, authenticated }) => {
 
   useEffect(() => {
     const resetAuthenticated = () => {
-      if (authenticated) {
+      if (!authenticated) {
         notify("Deslogado com sucesso", 'success');
         setAuthenticated(false);
       }
@@ -58,7 +58,12 @@ const Login = ({ users, setAuthenticated, authenticated }) => {
     <AuthContainer>
       <GhostColumn/>
       <FormColumn>
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ 
+          width: '100%', 
+          maxWidth: '400px', 
+          padding: '20px',
+          display: 'flex',
+          flexDirection: 'column' }}>
           <Typography variant="h3" color="white" sx={{ mb: 8, fontWeight: 'bold' }}>
             Livros de Prateleira
           </Typography>
