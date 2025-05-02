@@ -13,7 +13,7 @@ import "../../css/App.css";
 import Logo from "../../img/Login-Logo.png"
 import notify from "../../components/NewAlert";
 import 'react-toastify/dist/ReactToastify.css';
-import api from "../../components/Api.jsx";
+import apicsharp from "../../components/Api.jsx";
 import { Box, TextField, Button, Typography, Container, styled } from '@mui/material';
 
 const Cadastro = ({ users }) => {
@@ -25,14 +25,18 @@ const Cadastro = ({ users }) => {
       e.preventDefault();
   
       try {
-        const response = await api.post("/post-users", {
+        const response = await apicsharp.put("/api/Usuario", {
+          name: null,
           username: username,
           password: password,
+          profile_picture: null,
+          admin: 0,
         });
   
         if (response.status === 200) {
           notify('Cadastrado com sucesso', 'success');
           setTimeout(() => navigate("/"), 100);
+          window.location.reload();
         } else {
           notify('Erro ao cadastrar usuário', 'error');
         }
@@ -64,7 +68,7 @@ const Cadastro = ({ users }) => {
                 label="Usuário"
                 autoFocus
                 value={username}
-                onChange={(e) => setUser(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
               <StyledTextField

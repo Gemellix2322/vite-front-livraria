@@ -34,16 +34,16 @@ function App() {
       console.error('Erro completo:', error);
     }
 
-    //apicsharp.get('/books')
-    // .then(response => {
-    //    setLivros(response.data);
-    //    setLoading(false);
-    //  })
-    //  .catch(error => {
-    //    notify('Erro ao buscar livros:', 'error');
-    //    setError(error);
-    //    setLoading(false);
-    //  });
+    apicsharp.get('/api/Livros')
+     .then(response => {
+        setLivros(response.data);
+        setLoading(false);
+     })
+      .catch(error => {
+        notify('Erro ao buscar livros:', 'error');
+        setError(error);
+        setLoading(false);
+     });
     
   }, []);
 

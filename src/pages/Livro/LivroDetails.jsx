@@ -9,6 +9,7 @@ import notify from '../../components/NewAlert';
 import Navbar from '../Menu/Navbar';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import React from 'react';
 
 const labels = {
     0.5: '0.5',

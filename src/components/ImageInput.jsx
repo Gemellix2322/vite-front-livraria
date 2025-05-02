@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import React from 'react';
 
 const ImageInput = ({ className, name, maxHeight = 200, defaultImg}) => {
     const [preview, setPreview] = useState(defaultImg || '');

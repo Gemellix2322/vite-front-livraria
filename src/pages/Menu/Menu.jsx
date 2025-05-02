@@ -11,6 +11,7 @@ import Navbar from "./Navbar.jsx";
 import { Button } from "@mui/material";
  import { Link } from "react-router-dom";
 import AddLivro from "../Livro/AddLivro.jsx";
+import React from "react";
 
 
 const Menu = ({ users, authenticated }) => {
@@ -43,7 +44,6 @@ const Menu = ({ users, authenticated }) => {
         } else {
             notify('Logado com sucesso', 'success', 900);
         }
-        console.log('Fazendo requisição para:', `${process.env.CSHARP_API_URL}/books`);
         //Nova api em C#
         apicsharp.get('/api/Livros')
             .then(response => {

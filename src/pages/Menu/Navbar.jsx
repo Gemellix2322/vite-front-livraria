@@ -2,6 +2,7 @@ import { Close, Person, Settings, Logout } from '@mui/icons-material';
 import { Box, Drawer, IconButton, Typography, Avatar, List, ListItem, ListItemIcon, ListItemText, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 import insta from "../../img/instagram-logo.svg";
+import React from 'react';
 
 const Navbar = ({ user, isNavbarOpen, setIsNavbarOpen }) => {
     const handleClose = () => {
