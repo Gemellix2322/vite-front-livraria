@@ -1,25 +1,29 @@
-import "../../css/Menu.css";
-import LivrodoDia from "../Livro/LivrodoDia.jsx";
-import Logo from "../../img/Login-Logo.png";
-import { useNavigate } from "react-router-dom";
-import Livros from "../Livro/Livros.jsx";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {apicsharp} from "../../components/Api.jsx";
+import { apicsharp } from "../../components/Api.jsx";
 import notify from "../../components/NewAlert.js";
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from "./Navbar.jsx";
-import { Button } from "@mui/material";
- import { Link } from "react-router-dom";
-import AddLivro from "../Livro/AddLivro.jsx";
+import LivrodoDia from "../Livro/LivrodoDia.jsx";
+import Livros from "../Livro/Livros.jsx";
+import Logo from "../../img/Login-Logo.png";
 import React from "react";
 
+// Material UI imports
+import { 
+  Box, 
+  Typography, 
+  AppBar, 
+  Toolbar, 
+  Container, 
+  IconButton, 
+  Avatar, 
+  Button
+} from '@mui/material';
 
 const Menu = ({ users, authenticated }) => {
-
-    const navigate = useNavigate()
-
+    const navigate = useNavigate();
     const userId = localStorage.getItem('currentUserId');
-
     const currentUser = users.find(user => user.id === parseInt(userId));
 
     const [formData, setFormData] = useState({
@@ -35,8 +39,6 @@ const Menu = ({ users, authenticated }) => {
     const [error, setError] = useState(null);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
-    
-
     useEffect(() => {
         if(authenticated === false){
             notify('Loge primeiro', 'warning')
@@ -44,6 +46,7 @@ const Menu = ({ users, authenticated }) => {
         } else {
             notify('Logado com sucesso', 'success', 900);
         }
+        
         //Nova api em C#
         apicsharp.get('/api/Livros')
             .then(response => {
@@ -58,31 +61,86 @@ const Menu = ({ users, authenticated }) => {
 
     }, []);
 
-    if (loading) return <div>Carregando...</div>;
-    if (error) return <div>Erro ao carregar livros: {error.message}</div>;
+    if (loading) return <Typography sx={{ color: '#fff', p: 3 }}>Carregando...</Typography>;
+    if (error) return <Typography sx={{ color: '#fff', p: 3 }}>Erro ao carregar livros: {error.message}</Typography>;
 
-    
     return (
-        <div className="Menu">
-            <header className="App-header-menu">
-                <a onClick={() => setIsNavbarOpen(!isNavbarOpen)} sx={{cursor: 'pointer'}}>
-                    <img className="profile_picture_menu" src={formData.profile_picture} />
-                </a>
-                {isNavbarOpen ? <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/> : null}
-                <img src={Logo} alt="Logo" className="Logo"/>
-                <h1>{formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}</h1>
-                {currentUser.admin === 1 && <Link to={'/add'}><Button>Add Livro</Button></Link>}
-            </header>
-            <div className="App-container">
-                <h1>Livros Disponíveis</h1>
-                <div>
+        <Box sx={{
+            minHeight: '100vh',
+            bgcolor: '#1a1a1a',
+            color: '#ffffff'
+        }}>
+            <AppBar position="static" sx={{
+                background: 'linear-gradient(89deg, #142046 13%, #1a295b 86%)',
+                height: 200,
+            }}>
+                <Toolbar sx={{ 
+                    justifyContent: 'space-between',
+                    p: '0 2rem',
+                    position: 'relative'
+                }}>
+                    <IconButton onClick={() => setIsNavbarOpen(!isNavbarOpen)}>
+                        <Avatar 
+                            src={formData.profile_picture}
+                            sx={{
+                                width: 70,
+                                height: 70,
+                                border: '2px solid #ddd'
+                            }}
+                        />
+                    </IconButton>
+                    {isNavbarOpen && <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/>}
+                    
+                    <Box component="img" 
+                        src={Logo} 
+                        alt="Logo"
+                        sx={{
+                            width: 50,
+                            ml: 'auto',
+                            mr: '15px'
+                        }}
+                    />
+                    
+                    <Typography variant="h4" sx={{ 
+                        position: 'absolute',
+                        left: '50%',
+                        transform: 'translateX(-50%)'
+                    }}>
+                        {formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}
+                    </Typography>
+                    
+                    {currentUser.admin === 1 && (
+                        <Button 
+                            component={Link} 
+                            to={'/add'} 
+                            variant="contained" 
+                            sx={{ bgcolor: '#4299e1', '&:hover': { bgcolor: '#3182ce' } }}
+                        >
+                            Add Livro
+                        </Button>
+                    )}
+                </Toolbar>
+            </AppBar>
+
+            <Container sx={{ p: '2rem 0' }}>
+                <Typography variant="h4" sx={{ 
+                    color: '#ffffff', 
+                    mb: 4, 
+                    fontWeight: 600,
+                    pl: 2
+                }}>
+                    Livros Disponíveis
+                </Typography>
+                
+                <Box>
                     <LivrodoDia livro={livro}/>
-                </div>
-                <div>
+                </Box>
+                
+                <Box>
                     <Livros livro={livro}/>
-                </div>
-            </div>
-        </div>
+                </Box>
+            </Container>
+        </Box>
     );
 };
 

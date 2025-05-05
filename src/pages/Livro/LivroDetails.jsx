@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ArrowBack } from '@mui/icons-material';
-import { Box, Typography, AppBar, Toolbar, Container, Grid, IconButton, Avatar } from '@mui/material';
+import { Box, Typography, AppBar, Toolbar, Container, Grid, IconButton, Avatar, Button } from '@mui/material';
 import Logo from '../../img/Login-Logo.png';
 import { useState, useEffect } from 'react';
 import api from '../../components/Api.jsx';
@@ -40,7 +40,8 @@ function LivroDetails({ users, livros, authenticated }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-    const [value, setValue] = useState(labels)
+    const [value, setValue] = useState(labels);
+    const [onoff, setOnoff] = useState(false);
 
     // useEffect permanece igual
     useEffect(() => {
@@ -68,10 +69,6 @@ function LivroDetails({ users, livros, authenticated }) {
 
     const livro = livros.find(l => l.name === name);
     if (!livro) return <Typography>Livro não encontrado</Typography>;
-    
-    const filteredMessages = messages.filter(message => 
-        message.book && livro.id && message.book === livro.id
-    );
 
     return (
         <Box sx={{
@@ -160,6 +157,15 @@ function LivroDetails({ users, livros, authenticated }) {
                             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                         />
                         <Box sx={{ ml: 2 }}>{labels[value] || ''}</Box>
+                        </Box>
+                        <Box>
+                            <Button
+                                sx={{ color: onoff ? 'green' : 'red' }}
+                                value={onoff}
+                                onClick={() => setOnoff(!onoff)}
+                                >
+                                {onoff ? 'Marcar como Disponível' : 'Marcar como Indisponível'}
+                            </Button>
                         </Box>
                     </Grid>
                 </Grid>
