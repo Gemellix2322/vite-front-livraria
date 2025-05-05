@@ -8,6 +8,7 @@ import LivrodoDia from "../Livro/LivrodoDia.jsx";
 import Livros from "../Livro/Livros.jsx";
 import Logo from "../../img/Login-Logo.png";
 import React from "react";
+import AddLivro from "../Livro/AddLivro.jsx";
 
 // Material UI imports
 import { 
@@ -18,7 +19,9 @@ import {
   Container, 
   IconButton, 
   Avatar, 
-  Button
+  Button,
+  Dialog,
+  DialogContent,
 } from '@mui/material';
 
 const Menu = ({ users, authenticated }) => {
@@ -38,6 +41,7 @@ const Menu = ({ users, authenticated }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+    const [isAddLivroOpen, setIsAddLivroOpen] = useState(false);
 
     useEffect(() => {
         if(authenticated === false){
@@ -116,10 +120,9 @@ const Menu = ({ users, authenticated }) => {
                         </Typography>
                         
                         {currentUser.admin === 1 && (
-                            <Button 
-                                component={Link} 
-                                to={'/add'} 
-                                variant="contained" 
+                            <Button
+                                onClick={() => setIsAddLivroOpen(true)}
+                                variant="contained"
                                 sx={{ bgcolor: '#4299e1', '&:hover': { bgcolor: '#3182ce' } }}
                             >
                                 Add Livro
@@ -145,6 +148,15 @@ const Menu = ({ users, authenticated }) => {
                     <Livros livro={livro}/>
                 </Box>
             </Container>
+            <Dialog open={isAddLivroOpen} onClose={() => setIsAddLivroOpen(false)} maxWidth="sm" fullWidth>
+                <DialogContent>
+                    <AddLivro 
+                        users={users} 
+                        authenticated={authenticated} 
+                        onClose={() => setIsAddLivroOpen(false)} 
+                    />
+                </DialogContent>
+            </Dialog>
         </Box>
     );
 };
