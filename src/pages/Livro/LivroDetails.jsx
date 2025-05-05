@@ -158,6 +158,7 @@ function LivroDetails({ users, livros, authenticated }) {
                         />
                         <Box sx={{ ml: 2 }}>{labels[value] || ''}</Box>
                         </Box>
+                        {currentUser.admin === 1 && 
                         <Box>
                             <Button
                                 sx={{ color: onoff ? 'green' : 'red' }}
@@ -167,6 +168,7 @@ function LivroDetails({ users, livros, authenticated }) {
                                 {onoff ? 'Marcar como Disponível' : 'Marcar como Indisponível'}
                             </Button>
                         </Box>
+                        }
                     </Grid>
                 </Grid>
             </Container>
