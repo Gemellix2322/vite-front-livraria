@@ -48,7 +48,7 @@ const LivrodoDia = ({ livro }) => {
         sx={{
           borderRadius: '16px',
           overflow: 'hidden',
-          background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%)',
+          background: 'linear-gradient(135deg, #101d42 0%, #1e3a8a 100%)',
           mb: 4
         }}
       >

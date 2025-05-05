@@ -72,7 +72,7 @@ const Livros = ({ livro }) => {
               <Card 
                 key={l.id} 
                 component={Link} 
-                to={`/livro/${l.name}`}
+                to={`/livrodetails/${l.name}`}
                 sx={{
                   position: 'relative',
                   width: 200,
@@ -119,6 +119,7 @@ const Livros = ({ livro }) => {
                     {l.name}
                   </Typography>
                   <Chip 
+                    to={`/genre/${l.genre}`}
                     label={l.genre} 
                     size="small"
                     sx={{

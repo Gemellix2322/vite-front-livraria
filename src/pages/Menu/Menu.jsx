@@ -70,58 +70,63 @@ const Menu = ({ users, authenticated }) => {
             bgcolor: '#1a1a1a',
             color: '#ffffff'
         }}>
-            <AppBar position="static" sx={{
-                background: 'linear-gradient(89deg, #142046 13%, #1a295b 86%)',
-                height: 200,
-            }}>
-                <Toolbar sx={{ 
-                    justifyContent: 'space-between',
-                    p: '0 2rem',
-                    position: 'relative'
-                }}>
-                    <IconButton onClick={() => setIsNavbarOpen(!isNavbarOpen)}>
-                        <Avatar 
-                            src={formData.profile_picture}
+                <AppBar 
+                    position="static" 
+                    sx={{
+                        background: 'linear-gradient(89deg, #142046 13%, #1a295b 86%)',
+                        minHeight: 200,
+                        transition: 'all 0.3s ease'
+                    }}
+                >
+                    <Toolbar sx={{ 
+                        justifyContent: 'space-between',
+                        p: '0 2rem',
+                        position: 'relative',
+                        height: 200
+                    }}>
+                        <IconButton onClick={() => setIsNavbarOpen(!isNavbarOpen)}>
+                            <Avatar 
+                                src={formData.profile_picture}
+                                sx={{
+                                    width: 70,
+                                    height: 70,
+                                    border: '2px solid #ddd'
+                                }}
+                            />
+                        </IconButton>
+                        {isNavbarOpen && <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/>}
+                        
+                        <Box component="img" 
+                            src={Logo} 
+                            alt="Logo"
                             sx={{
-                                width: 70,
-                                height: 70,
-                                border: '2px solid #ddd'
+                                width: 50,
+                                height: 'auto',
+                                ml: 'auto',
+                                mr: '15px'
                             }}
                         />
-                    </IconButton>
-                    {isNavbarOpen && <Navbar isNavbarOpen={isNavbarOpen} user={users} setIsNavbarOpen={setIsNavbarOpen}/>}
-                    
-                    <Box component="img" 
-                        src={Logo} 
-                        alt="Logo"
-                        sx={{
-                            width: 50,
-                            ml: 'auto',
-                            mr: '15px'
-                        }}
-                    />
-                    
-                    <Typography variant="h4" sx={{ 
-                        position: 'absolute',
-                        left: '50%',
-                        transform: 'translateX(-50%)'
-                    }}>
-                        {formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}
-                    </Typography>
-                    
-                    {currentUser.admin === 1 && (
-                        <Button 
-                            component={Link} 
-                            to={'/add'} 
-                            variant="contained" 
-                            sx={{ bgcolor: '#4299e1', '&:hover': { bgcolor: '#3182ce' } }}
-                        >
-                            Add Livro
-                        </Button>
-                    )}
-                </Toolbar>
-            </AppBar>
-
+                        
+                        <Typography variant="h4" sx={{ 
+                            position: 'absolute',
+                            left: '50%',
+                            transform: 'translateX(-50%)'
+                        }}>
+                            {formData?.name ? `Bem-vindo ${formData.name}` : 'Bem-vindo'}
+                        </Typography>
+                        
+                        {currentUser.admin === 1 && (
+                            <Button 
+                                component={Link} 
+                                to={'/add'} 
+                                variant="contained" 
+                                sx={{ bgcolor: '#4299e1', '&:hover': { bgcolor: '#3182ce' } }}
+                            >
+                                Add Livro
+                            </Button>
+                        )}
+                    </Toolbar>
+                </AppBar>
             <Container sx={{ p: '2rem 0' }}>
                 <Typography variant="h4" sx={{ 
                     color: '#ffffff', 
