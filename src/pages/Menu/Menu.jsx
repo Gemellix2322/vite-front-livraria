@@ -38,7 +38,6 @@ const Menu = ({ users, authenticated }) => {
     });
     
     const [livro, setLivros] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
     const [isAddLivroOpen, setIsAddLivroOpen] = useState(false);
@@ -55,17 +54,14 @@ const Menu = ({ users, authenticated }) => {
         apicsharp.get('/api/Livros')
             .then(response => {
                 setLivros(response.data);
-                setLoading(false);
             })
             .catch(error => {
                 notify('Erro ao buscar livros:', 'error');
                 setError(error);
-                setLoading(false);
             });
 
     }, []);
 
-    if (loading) return <Typography sx={{ color: '#fff', p: 3 }}>Carregando...</Typography>;
     if (error) return <Typography sx={{ color: '#fff', p: 3 }}>Erro ao carregar livros: {error.message}</Typography>;
 
     return (

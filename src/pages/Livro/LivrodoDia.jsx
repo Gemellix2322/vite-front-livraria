@@ -87,17 +87,17 @@ const LivrodoDia = ({ livro }) => {
             <Typography variant="h4" sx={{ mb: 2, fontWeight: 700 }}>
               {livrodoDia.name}
             </Typography>
-            
-            <Chip 
-              label={livrodoDia.genre} 
-              sx={{
-                mb: 3,
-                color: 'white',
-                bgcolor: 'rgba(255, 255, 255, 0.15)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-              }}
-            />
-            
+            <Link to={`/genre/${livrodoDia.genre}`}>
+              <Chip
+                label={livrodoDia.genre} 
+                sx={{
+                  mb: 3,
+                  color: 'white',
+                  bgcolor: 'rgba(255, 255, 255, 0.15)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                }}
+              />
+            </Link>
             <Typography variant="body1" sx={{ mb: 3 }}>
               {livrodoDia.description}
             </Typography>

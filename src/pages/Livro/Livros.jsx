@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Box, 
   Typography, 
@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 
 const Livros = ({ livro }) => {
+  const navigate = useNavigate();
   // Agrupe os livros por gênero
   const livrosPorGenero = livro.reduce((acc, l) => {
     const genero = l.genre || 'Sem Gênero';
@@ -71,7 +72,7 @@ const Livros = ({ livro }) => {
             {livros.map((l) => (
               <Card 
                 key={l.id} 
-                component={Link} 
+                component={Link}
                 to={`/livrodetails/${l.name}`}
                 sx={{
                   position: 'relative',
@@ -118,15 +119,19 @@ const Livros = ({ livro }) => {
                   <Typography variant="h6" component="div" sx={{ mb: 1 }}>
                     {l.name}
                   </Typography>
-                  <Chip 
-                    to={`/genre/${l.genre}`}
+                  <Chip
                     label={l.genre} 
                     size="small"
+                    onClick={(e) => {
+                      e.preventDefault(); // evita navegação do Card
+                      navigate(`/genre/${l.genre}`);
+                    }}
                     sx={{
                       border: '1px solid white',
                       borderRadius: '10px',
                       bgcolor: 'rgba(255, 255, 255, 0.2)',
                       color: 'white',
+                      cursor: 'pointer',
                     }}
                   />
                 </CardContent>

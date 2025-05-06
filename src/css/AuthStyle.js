@@ -43,7 +43,7 @@ export const FormColumn = styled(Box)({
 export const StyledTextField = styled(TextField)({
   marginBottom: '15px',
   '& .MuiInputBase-root': {
-    backgroundColor: '#484848',
+    backgroundColor: '#707070',
     boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.5)',
     color: 'black',
     '&:hover': {
@@ -54,7 +54,7 @@ export const StyledTextField = styled(TextField)({
     }
   },
   '& .MuiInputLabel-root': {
-    color: 'black',
+    color: 'white',
     '&.Mui-focused': {
       color: 'black'
     }
@@ -71,7 +71,7 @@ export const StyledButton = styled(Button)({
   boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.5)',
   color: 'white',
   '&:hover': {
-    backgroundColor: '#c5c5c5',
+    backgroundColor: '#268f00',
     color: 'black'
   }
 });
